@@ -390,21 +390,36 @@ class VTKPanel:
         )
 
         # --- Initialize VTK Widget ---
+        print("[DEBUG VTK] Initializing main vtk_widget...", flush=True)
         self.vtk_widget.Initialize()
+        print("[DEBUG VTK] Starting main vtk_widget...", flush=True)
         self.vtk_widget.Start()
+        print("[DEBUG VTK] Main vtk_widget started.", flush=True)
 
+        print("[DEBUG VTK] Initializing axial_vtk_widget...", flush=True)
         self.axial_vtk_widget.Initialize()
+        print("[DEBUG VTK] Starting axial_vtk_widget...", flush=True)
         self.axial_vtk_widget.Start()
+        print("[DEBUG VTK] Axial started.", flush=True)
 
+        print("[DEBUG VTK] Initializing coronal_vtk_widget...", flush=True)
         self.coronal_vtk_widget.Initialize()
+        print("[DEBUG VTK] Starting coronal_vtk_widget...", flush=True)
         self.coronal_vtk_widget.Start()
+        print("[DEBUG VTK] Coronal started.", flush=True)
 
+        print("[DEBUG VTK] Initializing sagittal_vtk_widget...", flush=True)
         self.sagittal_vtk_widget.Initialize()
+        print("[DEBUG VTK] Starting sagittal_vtk_widget...", flush=True)
         self.sagittal_vtk_widget.Start()
+        print("[DEBUG VTK] Sagittal started.", flush=True)
 
+        print("[DEBUG VTK] Resetting camera...", flush=True)
         self.scene.reset_camera()
 
+        print("[DEBUG VTK] Calling _render_all...", flush=True)
         self._render_all()
+        print("[DEBUG VTK] VTKPanel __init__ complete.", flush=True)
 
     def set_anatomical_slice_visibility(self, visible: bool) -> None:
         """Sets visibility for anatomical slices and associated crosshairs."""

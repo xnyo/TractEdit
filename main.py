@@ -715,27 +715,36 @@ def main() -> None:
     if splash:
         splash.set_progress(70, "Building User Interface...")
 
+    print("[DEBUG] Creating MainWindow...", flush=True)
     main_window: MainWindow = MainWindow()
+    print("[DEBUG] MainWindow created.", flush=True)
 
     if splash:
         splash.set_progress(90, "Starting...")
 
     # Launch - cross-platform window maximization
+    print("[DEBUG] Getting primary screen...", flush=True)
     screen = app.primaryScreen()
     if screen:
+        print("[DEBUG] Setting geometry...", flush=True)
         available_geometry = screen.availableGeometry()
         main_window.setGeometry(available_geometry)
 
+    print("[DEBUG] Calling main_window.show()...", flush=True)
     main_window.show()
+    print("[DEBUG] main_window.show() completed.", flush=True)
 
     # Delay maximize to ensure window manager has fully initialized the window
     def ensure_maximized():
+        print("[DEBUG] ensure_maximized called.", flush=True)
         main_window.showMaximized()
 
     QTimer.singleShot(50, ensure_maximized)
 
     if splash:
+        print("[DEBUG] Finishing splash...", flush=True)
         splash.finish(main_window)
+        print("[DEBUG] Splash finished.", flush=True)
 
     # Trigger initial file loading if arguments provided
     if args.bundle or args.anat or args.roi_paths or args.roi:
