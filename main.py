@@ -672,15 +672,16 @@ def main() -> None:
         sys.exit(1)
 
     # Pre-compile Numba functions (while splash is visible)
-    if splash:
-        splash.set_progress(50, "Optimizing performance...")
-
-    try:
-        from tractedit_pkg.file_io import warmup_numba_functions
-
-        warmup_numba_functions()
-    except Exception as e:
-        logger.warning(f"Numba warmup failed (non-critical): {e}")
+    # DISABLED: Testing if Numba warmup causes CI build freeze
+    # if splash:
+    #     splash.set_progress(50, "Optimizing performance...")
+    #
+    # try:
+    #     from tractedit_pkg.file_io import warmup_numba_functions
+    #
+    #     warmup_numba_functions()
+    # except Exception as e:
+    #     logger.warning(f"Numba warmup failed (non-critical): {e}")
 
     # Pre-import heavy libraries to speed up first bundle load
     if splash:
@@ -699,17 +700,18 @@ def main() -> None:
         logger.warning(f"Library pre-load failed (non-critical): {e}")
 
     # Warmup selection numba functions (sphere/box selection)
-    if splash:
-        splash.set_progress(65, "Optimizing selection tools...")
-
-    try:
-        from tractedit_pkg.visualization.selection import (
-            warmup_selection_numba_functions,
-        )
-
-        warmup_selection_numba_functions()
-    except Exception as e:
-        logger.warning(f"Selection warmup failed (non-critical): {e}")
+    # DISABLED: Testing if Numba warmup causes CI build freeze
+    # if splash:
+    #     splash.set_progress(65, "Optimizing selection tools...")
+    #
+    # try:
+    #     from tractedit_pkg.visualization.selection import (
+    #         warmup_selection_numba_functions,
+    #     )
+    #
+    #     warmup_selection_numba_functions()
+    # except Exception as e:
+    #     logger.warning(f"Selection warmup failed (non-critical): {e}")
 
     # Main Window
     if splash:
