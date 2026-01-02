@@ -732,18 +732,25 @@ def main() -> None:
 
     print("[DEBUG] Calling main_window.show()...", flush=True)
     main_window.show()
+    main_window.raise_()  # Bring to front
+    main_window.activateWindow()  # Give focus
     print("[DEBUG] main_window.show() completed.", flush=True)
 
     # Delay maximize to ensure window manager has fully initialized the window
     def ensure_maximized():
         print("[DEBUG] ensure_maximized called.", flush=True)
         main_window.showMaximized()
+        main_window.raise_()  # Ensure it stays on top after maximize
+        main_window.activateWindow()
 
     QTimer.singleShot(50, ensure_maximized)
 
     if splash:
         print("[DEBUG] Finishing splash...", flush=True)
-        splash.finish(main_window)
+        # Explicitly close and cleanup splash - finish() alone can fail in bundled apps
+        splash.close()
+        splash.hide()
+        splash.deleteLater()
         print("[DEBUG] Splash finished.", flush=True)
 
     # Trigger initial file loading if arguments provided
