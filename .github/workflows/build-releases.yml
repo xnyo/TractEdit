@@ -58,10 +58,10 @@ jobs:
         shell: bash
         run: |
           # Default to true for tag pushes
-          if [ "${{ github.event_name }}" == "push" ]; then
-            echo "should_build=true" >> $GITHUB_OUTPUT
-            exit 0
-          fi
+          #if [ "${{ github.event_name }}" == "push" ]; then
+          #  echo "should_build=true" >> $GITHUB_OUTPUT
+          #  exit 0
+          #fi
           
           # For workflow_dispatch, check the relevant input
           case "${{ matrix.target }}" in
